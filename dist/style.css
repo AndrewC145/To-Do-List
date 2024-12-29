@@ -1,0 +1,20 @@
+:root {
+  --app-color: rgb(34, 34, 34);
+  --nav-color: rgb(68, 68, 68);
+  --primary-color: rgb(216, 216, 216);
+  --secondary-color: rgb(48, 48, 212);
+  --low-priority: lightgreen;
+  --medium-priority: orange;
+  --high-priority: red;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Poppins, "sans-serif";
+  background-color: var(--app-color);
+}
