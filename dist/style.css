@@ -30,6 +30,7 @@ nav {
   flex-direction: column;
   background-color: var(--nav-color);
   width: 15%;
+  height: 100vh;
 }
 
 nav .sidebar-header {
@@ -60,11 +61,16 @@ nav .sidebar-header {
   margin-right: 0.5rem;
 }
 
-.sidebar-right .add-todo, .projects-section .add-project {
+.add-todo, .toggle-sidebar, .add-project {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
+
+.add-todo:hover, .toggle-sidebar:hover, .add-project:hover {
+  filter: brightness(0) saturate(100%) invert(66%) sepia(3%) saturate(3217%) hue-rotate(320deg) brightness(81%) contrast(89%);
+}
+
 
 .sidebar-right img {
   cursor: pointer;
@@ -113,10 +119,6 @@ nav .sidebar-header {
 
 .projects-section .add-project {
   margin-left: auto;
-}
-
-.projects-section .add-project:hover {
-  filter: brightness(0) saturate(100%) invert(66%) sepia(3%) saturate(3217%) hue-rotate(320deg) brightness(81%) contrast(89%);
 }
 
 img {
