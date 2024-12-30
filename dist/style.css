@@ -62,6 +62,11 @@ nav .sidebar-header {
 .sidebar-right .add-todo {
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
+
+.sidebar-right img {
+  cursor: pointer;
 }
 
 .inbox-container {
