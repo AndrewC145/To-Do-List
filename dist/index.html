@@ -75,6 +75,24 @@
         </div>
       </div>
     </div>
+    <dialog class="add-todo-dialog">
+      <form id="add-todo-form" action="#" method="dialog">
+        <textarea type="text" id="title" class="title-box" placeholder="Title" required></textarea>
+        <textarea type="text" id="description" class="description-box" placeholder="Description" required></textarea>
+        <div class="todo-settings">
+          <input type="date" id="date" class="date-box" required>
+          <select id="priority" class="priority-box" required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <select id="project-selection">
+            <option value="inbox">Inbox</option>
+          </select>
+        </div>
+      </form>
+
+    </dialog>
   </main>
   <script src="main.js"></script>
 </body>
