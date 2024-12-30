@@ -95,6 +95,7 @@ nav .sidebar-header {
 }
 
 .inboxes button:hover {
+  transition: ease-in-out 0.15s;
   background-color: var(--section-hover);
 }
 
@@ -107,6 +108,7 @@ nav .sidebar-header {
 }
 
 .projects-section:hover {
+  transition: ease-in-out 0.15s;
   background-color: var(--section-hover);
 }
 
@@ -148,10 +150,17 @@ img {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--primary-color);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px; 
   margin: 1rem;
   width: 50%;
   padding: 1rem;
   margin: 0 auto;
+}
+
+.todoContainer:hover {
+  background-color: var(--section-hover);
+  transition: ease-in-out 0.15s;
 }
 
 
