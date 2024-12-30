@@ -2,7 +2,7 @@
   --app-color: rgb(34, 34, 34);
   --nav-color: rgb(68, 68, 68);
   --primary-color: rgb(216, 216, 216);
-  --secondary-color: rgb(48, 48, 212);
+  --secondary-color: rgb(243, 181, 170);
   --low-priority: lightgreen;
   --medium-priority: orange;
   --high-priority: red;
@@ -41,12 +41,32 @@ nav .sidebar-header {
 }
 
 .sidebar-left {
-  gap: 20px;
-  padding: 0.5rem;
-  background-color: blue;
+  gap: 10px;
+  padding: 1rem 1rem;
 }
+
+.sidebar-left h1 {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.sidebar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.sidebar-right .add-todo {
+  background-color: transparent;
+  border: none;
+}
+
 
 img {
   width: 30px;
   height: 30px;
+  filter: brightness(0) saturate(100%) invert(88%) sepia(79%) saturate(3031%) hue-rotate(292deg) brightness(106%) contrast(90%);
 }
