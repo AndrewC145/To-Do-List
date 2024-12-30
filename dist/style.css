@@ -33,6 +33,9 @@ nav {
 
 nav .sidebar-header {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
 }
 
 img {
