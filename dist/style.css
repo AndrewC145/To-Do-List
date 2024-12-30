@@ -33,9 +33,17 @@ nav {
 
 nav .sidebar-header {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-left, .sidebar-right {
+  display: flex;
+}
+
+.sidebar-left {
+  gap: 20px;
   padding: 0.5rem;
+  background-color: blue;
 }
 
 img {
