@@ -59,13 +59,13 @@ nav .sidebar-header {
   margin-right: 0.5rem;
 }
 
-.add-todo, .toggle-sidebar, .add-project {
+.add-todo, .toggle-sidebar, .add-project, .todoBody button {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.add-todo:hover, .toggle-sidebar:hover, .add-project:hover {
+.add-todo:hover, .toggle-sidebar:hover, .add-project:hover, .todoBody button:hover {
   filter: brightness(0) saturate(100%) invert(66%) sepia(3%) saturate(3217%) hue-rotate(320deg) brightness(81%) contrast(89%);
 }
 
@@ -154,6 +154,7 @@ img {
   margin: 0 auto;
 }
 
+
 .todoList {
   display: flex;
   flex-direction: column;
@@ -193,6 +194,11 @@ img {
 }
 
 .todoBody {
+  display: flex;
   color: var(--primary-color);
   margin-left: 2rem;
+}
+
+.todoIcons {
+  margin-left: auto;
 }
