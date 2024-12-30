@@ -126,3 +126,21 @@ img {
   height: 30px;
   filter: brightness(0) saturate(100%) invert(88%) sepia(79%) saturate(3031%) hue-rotate(292deg) brightness(106%) contrast(90%);
 }
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100vh;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  background-color: var(--app-color);
+  color: var(--primary-color);
+  padding-left: 4rem;
+  padding-top: 1rem;
+  gap: 1rem;
+}
+
