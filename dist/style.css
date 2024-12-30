@@ -3,6 +3,7 @@
   --nav-color: rgb(68, 68, 68);
   --primary-color: rgb(216, 216, 216);
   --secondary-color: rgb(243, 181, 170);
+  --section-hover: rgb(100, 100, 100);
   --low-priority: lightgreen;
   --medium-priority: orange;
   --high-priority: red;
@@ -59,7 +60,7 @@ nav .sidebar-header {
   margin-right: 0.5rem;
 }
 
-.sidebar-right .add-todo {
+.sidebar-right .add-todo, .projects-section .add-project {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -81,7 +82,7 @@ nav .sidebar-header {
   color: var(--primary-color);
   background-color: transparent;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 1rem;
   gap: 10px;
   font-size: 1.1rem;
@@ -90,7 +91,32 @@ nav .sidebar-header {
 }
 
 .inboxes button:hover {
-  background-color: rgb(100, 100, 100);
+  background-color: var(--section-hover);
+}
+
+.projects-section {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.projects-section:hover {
+  background-color: var(--section-hover);
+}
+
+.projects-section p {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.projects-section .add-project {
+  margin-left: auto;
+}
+
+.projects-section .add-project:hover {
+  filter: brightness(0) saturate(100%) invert(66%) sepia(3%) saturate(3217%) hue-rotate(320deg) brightness(81%) contrast(89%);
 }
 
 img {
