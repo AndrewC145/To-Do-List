@@ -114,7 +114,6 @@ function clearInputs() {
   descriptionBox.value = "";
   dateBox.value = "";
   priorityBox.value = "Priority";
-  projectSelection.value = "Inbox";
 
   document.querySelector(".add-todo-dialog").close();
 }
