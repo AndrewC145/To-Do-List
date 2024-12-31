@@ -282,6 +282,10 @@ dialog textarea {
   height: 1.5rem;
 }
 
+.todo-settings {
+  margin-bottom: 1rem;
+}
+
 .date-box, .priority-box, #project-selection {
   background: none;
   color: var(--primary-color);
@@ -289,10 +293,43 @@ dialog textarea {
   padding: 5px;
 }
 
+.date-box {
+  font-size: 1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.date-box::-webkit-calendar-picker-indicator {
+  filter: brightness(0) saturate(100%) invert(98%) sepia(1%) saturate(0%) hue-rotate(165deg) brightness(98%) contrast(75%);
+}
+
 dialog select, dialog option {
   background-color: var(--app-color);
   color: var(--primary-color);
   font-size: 0.9rem;
-  font-family: Poppins;
+  font-family: Poppins, "sans-serif";
 }
 
+.priority-box, #project-selection {
+  width: 25%;
+}
+
+
+.cancel-todo, .submit-btn {
+  font-size: 1rem;
+  color: var(--primary-color);
+  background-color: var(--section-hover);
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-family: Poppins, "sans-serif";
+}
+
+.submit-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  margin: 0;
+}
