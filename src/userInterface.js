@@ -1,5 +1,6 @@
 const sidebar = document.querySelector(".sidebar");
 const addTodoDialog = document.querySelector(".add-todo-dialog");
+const projectDialog = document.querySelector(".add-project-dialog");
 
 
 function toggleSidebar() {
@@ -17,12 +18,10 @@ function closeTodoDialog() {
 }
 
 function showProjectDialog() {
-  const projectDialog = document.querySelector(".add-project-dialog");
   projectDialog.showModal();
 }
 
 function closeProjectDialog() {
-  const projectDialog = document.querySelector(".add-project-dialog");
   projectDialog.close();
 }
 
@@ -45,14 +44,12 @@ export function initializeUI() {
     if (event.target === addTodoDialog) {
       closeTodoDialog();
     }
+    if (event.target === projectDialog) {
+      closeProjectDialog();
+    }
   });
 
   addProjectBtn.addEventListener("click", showProjectDialog);
   cancelProjectBtn.addEventListener("click", closeProjectDialog);
 
-  document.addEventListener("click", (event) => {
-    if (event.target === addProjectDialog) {
-      closeProjectDialog();
-    }
-  });
 }
