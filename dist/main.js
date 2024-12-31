@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInterface */ \"./src/userInterface.js\");\n\r\n\r\nconst toggleSidebarBtns = document.querySelectorAll(\".toggle-sidebar\");\r\n\r\ntoggleSidebarBtns.forEach((btn) => {\r\n  btn.addEventListener(\"click\", _userInterface__WEBPACK_IMPORTED_MODULE_0__.toggleSidebar);\r\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInterface */ \"./src/userInterface.js\");\n\r\n\r\nconst toggleSidebarBtns = document.querySelectorAll(\".toggle-sidebar\");\r\nconst addTodoBtn = document.querySelector(\".add-todo\");\r\nconst cancelTodoBtn = document.querySelector(\".cancel-todo\");\r\nconst addTodoDialog = document.querySelector(\".add-todo-dialog\");\r\n\r\ntoggleSidebarBtns.forEach((btn) => {\r\n  btn.addEventListener(\"click\", _userInterface__WEBPACK_IMPORTED_MODULE_0__.toggleSidebar);\r\n});\r\n\r\naddTodoBtn.addEventListener(\"click\", _userInterface__WEBPACK_IMPORTED_MODULE_0__.showAddTodoDialog);\r\ncancelTodoBtn.addEventListener(\"click\", _userInterface__WEBPACK_IMPORTED_MODULE_0__.closeTodoDialog);\r\n\r\ndocument.addEventListener(\"click\", (event) => {\r\n  if (event.target === addTodoDialog) {\r\n    (0,_userInterface__WEBPACK_IMPORTED_MODULE_0__.closeTodoDialog)();\r\n  }\r\n});\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _use
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   toggleSidebar: () => (/* binding */ toggleSidebar)\n/* harmony export */ });\nconst sidebar = document.querySelector(\".sidebar\");\r\n\r\nfunction toggleSidebar() {\r\n  const mainContainer = document.querySelector(\".main-container\");\r\n  sidebar.classList.toggle(\"hidden\");\r\n  mainContainer.classList.toggle(\"full-width\");\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./src/userInterface.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   closeTodoDialog: () => (/* binding */ closeTodoDialog),\n/* harmony export */   showAddTodoDialog: () => (/* binding */ showAddTodoDialog),\n/* harmony export */   toggleSidebar: () => (/* binding */ toggleSidebar)\n/* harmony export */ });\nconst sidebar = document.querySelector(\".sidebar\");\r\nconst addTodoDialog = document.querySelector(\".add-todo-dialog\");\r\n\r\n\r\nfunction toggleSidebar() {\r\n  const mainContainer = document.querySelector(\".main-container\");\r\n  sidebar.classList.toggle(\"hidden\");\r\n  mainContainer.classList.toggle(\"full-width\");\r\n}\r\n\r\nfunction showAddTodoDialog() {\r\n  addTodoDialog.showModal();\r\n}\r\n\r\nfunction closeTodoDialog() {\r\n  addTodoDialog.close();\r\n}\n\n//# sourceURL=webpack:///./src/userInterface.js?");
 
 /***/ })
 
