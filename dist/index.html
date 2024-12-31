@@ -111,7 +111,7 @@
         <textarea type="text" id="project-title" class="project-title-box" placeholder="Project Title" required></textarea>
         <div class="project-buttons">
           <button class="cancel-project" type="button">Cancel</button>
-          <button class="add-project">Add Project</button>
+          <button class="submit-project">Add Project</button>
         </div>
       </form>
     </dialog>
@@ -121,6 +121,16 @@
     document.querySelector(".add-todo").addEventListener("click", function() {
       document.querySelector(".add-todo-dialog").showModal();
     });
+
+    document.querySelector(".add-project").addEventListener("click", function() {
+      document.querySelector(".add-project-dialog").showModal();
+    });
+
+    window.onclick = function(event) {
+      if (event.target == document.querySelector(".add-todo-dialog")) {
+        document.querySelector(".add-todo-dialog").close();
+      }
+    }
   </script>
 </body>
 </html>
