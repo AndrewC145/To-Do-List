@@ -104,11 +104,20 @@ function displayTodos() {
   });
 }
 
+function clearInputs() {
+  document.querySelector(".title-box").value = "";
+  document.querySelector(".description-box").value = "";
+  document.querySelector(".date-box").value = "";
+  document.querySelector(".priority-box").value = "Priority";
+  document.querySelector("#project-selection").value = "Inbox";
+}
+
 
 export function initializeTodoFunctions() {
   addTodoBtn.addEventListener("click", () => {
     createTodos();
     displayTodos();
+    clearInputs();
   });
   console.log(inbox);
 }
