@@ -1,4 +1,9 @@
 const addTodoBtn = document.querySelector(".submit-btn");
+const titleBox = document.querySelector(".title-box");
+const descriptionBox = document.querySelector(".description-box");
+const dateBox = document.querySelector(".date-box");
+const priorityBox = document.querySelector(".priority-box");
+const projectSelection = document.querySelector("#project-selection");
 
 const inbox = [];
 const today = [];
@@ -17,11 +22,11 @@ class Project {
 }
 
 function createTodos() {
-  const title = document.querySelector(".title-box").value;
-  const description = document.querySelector(".description-box").value;
-  const date = document.querySelector(".date-box").value;
-  let priority = document.querySelector(".priority-box").value;
-  const locationInbox = document.querySelector("#project-selection").value;
+  const title = titleBox.value
+  const description = descriptionBox.value
+  const date = dateBox.value;
+  let priority = priorityBox.value;
+  const locationInbox = projectSelection.value;
 
   if (title === "" || priority === "Priority") {
     alert("Please fill out the proper fields");
@@ -105,19 +110,21 @@ function displayTodos() {
 }
 
 function clearInputs() {
-  document.querySelector(".title-box").value = "";
-  document.querySelector(".description-box").value = "";
-  document.querySelector(".date-box").value = "";
-  document.querySelector(".priority-box").value = "Priority";
-  document.querySelector("#project-selection").value = "Inbox";
+  titleBox.value = "";
+  descriptionBox.value = "";
+  dateBox.value = "";
+  priorityBox.value = "Priority";
+  projectSelection.value = "Inbox";
+
+  document.querySelector(".add-todo-dialog").close();
 }
 
 
 export function initializeTodoFunctions() {
-  addTodoBtn.addEventListener("click", () => {
+  addTodoBtn.addEventListener("click", (event) => {
+    event.preventDefault();
     createTodos();
     displayTodos();
     clearInputs();
   });
-  console.log(inbox);
 }
