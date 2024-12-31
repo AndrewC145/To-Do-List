@@ -16,7 +16,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInterface */ \"./src/userInterface.js\");\n\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n  (0,_userInterface__WEBPACK_IMPORTED_MODULE_0__.initializeUI)();\r\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _userInterface__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./userInterface */ \"./src/userInterface.js\");\n/* harmony import */ var _todoFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todoFunctions */ \"./src/todoFunctions.js\");\n\r\n\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n  (0,_userInterface__WEBPACK_IMPORTED_MODULE_0__.initializeUI)();\r\n  (0,_todoFunctions__WEBPACK_IMPORTED_MODULE_1__.initializeTodoFunctions)();\r\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/todoFunctions.js":
+/*!******************************!*\
+  !*** ./src/todoFunctions.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   initializeTodoFunctions: () => (/* binding */ initializeTodoFunctions)\n/* harmony export */ });\nconst addTodoBtn = document.querySelector(\".submit-btn\");\r\n\r\nconst inbox = [];\r\nconst today = [];\r\nconst tomorrow = [];\r\nconst week = [];\r\nconst projects = [];\r\n\r\nclass Project {\r\n  constructor(title, description, date, priority, locationInbox) {\r\n    this.title = title;\r\n    this.description = description;\r\n    this.date = date;\r\n    this.priority = priority;\r\n    this.locationInbox = locationInbox;\r\n  }\r\n}\r\n\r\nfunction createTodos() {\r\n  const title = document.querySelector(\".title-box\").value;\r\n  const description = document.querySelector(\".description-box\").value;\r\n  const date = document.querySelector(\".date-box\").value;\r\n  const priority = document.querySelector(\".priority-box\").value;\r\n  const locationInbox = document.querySelector(\"#project-selection\").value;\r\n\r\n  if (title === \"\" || priority === \"Priority\") {\r\n    alert(\"Please fill out the proper fields\");\r\n  } else {\r\n    const newTodo = new Project(title, description, date, priority, locationInbox);\r\n    inbox.push(newTodo);\r\n  }\r\n}\r\n\r\nfunction initializeTodoFunctions() {\r\n  addTodoBtn.addEventListener(\"click\", createTodos);\r\n  console.log(inbox);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/todoFunctions.js?");
 
 /***/ }),
 
