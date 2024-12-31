@@ -59,7 +59,7 @@ nav .sidebar-header {
   margin-right: 0.5rem;
 }
 
-.add-todo, .toggle-sidebar, .add-project, .todoBody button {
+.add-todo, .toggle-sidebar, .add-project, .todoBody button, .project button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -101,13 +101,20 @@ nav .sidebar-header {
 
 .projects-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
+  padding-top: 1rem;
 }
 
-.projects-section:hover {
+.projects-section .project-header {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.project-header:hover {
   transition: ease-in-out 0.15s;
   background-color: var(--section-hover);
 }
@@ -119,6 +126,38 @@ nav .sidebar-header {
 
 .projects-section .add-project {
   margin-left: auto;
+}
+
+.projects-section .project {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.project:hover {
+  transition: ease-in-out 0.15s;
+  background-color: var(--section-hover);
+}
+
+.project-button {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.project-icons {
+  margin-left: auto;
+}
+
+.project-icons img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.project-icons img:hover {
+  filter: brightness(0) saturate(100%) invert(66%) sepia(3%) saturate(3217%) hue-rotate(320deg) brightness(81%) contrast(89%);
 }
 
 img {
