@@ -57,6 +57,7 @@ body {
 .sidebar-left h1 {
   color: var(--primary-color);
   font-size: 1.2rem;
+  text-wrap: nowrap;
 }
 
 .sidebar-right {
