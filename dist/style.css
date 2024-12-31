@@ -23,15 +23,20 @@ body {
   display: flex;
 }
 
-nav {
+.sidebar {
   display: flex;
   flex-direction: column;
   background-color: var(--nav-color);
   width: 15%;
   height: 100vh;
+  transition: 0.3s ease;
 }
 
-nav .sidebar-header {
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar .sidebar-header {
   display: flex;
   justify-content: space-between;
 }
@@ -173,6 +178,11 @@ img {
   width: 85%;
   height: 100vh;
   background-color: var(--app-color);
+  transition: width 0.3s ease;
+}
+
+.main-container.full-width {
+  width: 100%;
 }
 
 .main-header {

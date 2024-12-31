@@ -117,20 +117,5 @@
     </dialog>
   </main>
   <script src="main.js"></script>
-  <script>
-    document.querySelector(".add-todo").addEventListener("click", function() {
-      document.querySelector(".add-todo-dialog").showModal();
-    });
-
-    document.querySelector(".add-project").addEventListener("click", function() {
-      document.querySelector(".add-project-dialog").showModal();
-    });
-
-    window.onclick = function(event) {
-      if (event.target == document.querySelector(".add-todo-dialog")) {
-        document.querySelector(".add-todo-dialog").close();
-      }
-    }
-  </script>
 </body>
 </html>
