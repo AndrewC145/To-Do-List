@@ -112,5 +112,10 @@
     </dialog>
   </main>
   <script src="main.js"></script>
+  <script>
+    document.querySelector(".add-todo").addEventListener("click", function() {
+      document.querySelector(".add-todo-dialog").showModal();
+    });
+  </script>
 </body>
 </html>
