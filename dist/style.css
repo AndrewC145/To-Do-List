@@ -262,7 +262,18 @@ img {
   border-radius: 5px;
   padding: 0.2rem;
   margin-right: 0.5rem;
+}
+
+.todo-priority.low {
+  background-color: var(--low-priority);
+}
+
+.todo-priority.medium {
   background-color: var(--medium-priority);
+}
+
+.todo-priority.high {
+  background-color: var(--high-priority);
 }
 
 .todoBody {

@@ -20,12 +20,13 @@ function createTodos() {
   const title = document.querySelector(".title-box").value;
   const description = document.querySelector(".description-box").value;
   const date = document.querySelector(".date-box").value;
-  const priority = document.querySelector(".priority-box").value;
+  let priority = document.querySelector(".priority-box").value;
   const locationInbox = document.querySelector("#project-selection").value;
 
   if (title === "" || priority === "Priority") {
     alert("Please fill out the proper fields");
   } else {
+    priority = priority.charAt(0).toUpperCase() + priority.slice(1);
     const newTodo = new Project(title, description, date, priority, locationInbox);
     inbox.push(newTodo);
   }
@@ -57,6 +58,15 @@ function displayTodos() {
     todoCheckbox.classList.add("check");
     todoTitle.classList.add("todoTitle");
     todoPriority.classList.add("todo-priority");
+
+    if (todo.priority === "High") {
+      todoPriority.classList.add("high");
+    } else if (todo.priority === "Medium") {
+      todoPriority.classList.add("medium");
+    } else {
+      todoPriority.classList.add("low");
+    }
+
     todoDate.classList.add("date");
     todoBody.classList.add("todoBody");
     todoDescription.classList.add("todoDescription");
