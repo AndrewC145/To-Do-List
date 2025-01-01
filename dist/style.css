@@ -290,7 +290,7 @@ img {
   margin-right: 0.5rem;
 }
 
-.add-todo-dialog {
+.add-todo-dialog, .edit-todo-dialog {
   top: 40%;
   left: 43%;
   width: 500px;
@@ -324,7 +324,7 @@ dialog textarea {
   margin-bottom: 1rem;
 }
 
-.date-box, .priority-box, #project-selection {
+.date-box, .priority-box, #project-selection, #edit-project-selection {
   background: none;
   color: var(--primary-color);
   border: 1px solid var(--section-hover);
