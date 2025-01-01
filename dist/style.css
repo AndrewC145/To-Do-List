@@ -286,6 +286,10 @@ img {
   margin-left: auto;
 }
 
+.todo-edit {
+  margin-right: 0.5rem;
+}
+
 .add-todo-dialog {
   top: 40%;
   left: 43%;
