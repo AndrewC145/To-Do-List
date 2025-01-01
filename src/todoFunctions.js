@@ -38,10 +38,6 @@ function createTodos() {
   let todaysDate = formatDate(new Date());
   let tomorrowsDate = formatDate(new Date(Date.now() + 86400000));
 
-  console.log("Date:", date);
-  console.log("Today's Date:", todaysDate);
-  console.log("Tomorrow's Date:", tomorrowsDate);
-
   if (title === "" || priority === "Priority") {
     alert("Please fill out the required fields");
     return;
