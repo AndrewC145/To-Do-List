@@ -118,6 +118,28 @@ function clearInputs() {
   document.querySelector(".add-todo-dialog").close();
 }
 
+function deleteTodos() {
+  const checkboxes = document.querySelectorAll(".check");
+  const todoDeleteBtns = document.querySelectorAll(".todo-trash");
+  const todoContainers = document.querySelectorAll(".todoContainer");
+
+  checkboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener("click", () => {
+      if (checkbox.checked) {
+        todoContainers[index].remove();
+        inbox.splice(index, 1);
+      }
+    });
+  });
+
+  todoDeleteBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      todoContainers[index].remove();
+      inbox.splice(index, 1);
+    })
+  })
+}
+
 
 export function initializeTodoFunctions() {
   addTodoBtn.addEventListener("click", (event) => {
@@ -125,5 +147,6 @@ export function initializeTodoFunctions() {
     createTodos();
     displayTodos();
     clearInputs();
+    deleteTodos();
   });
 }
