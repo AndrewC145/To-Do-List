@@ -84,9 +84,9 @@ function displayTodos() {
     todoPriority.textContent = todo.priority;
     todoDate.textContent = todo.date;
     todoDescription.textContent = todo.description;
-    todoEditIcon.src = "../dist/svg/trash-bin-minimalistic-svgrepo-com.svg";
-    todoDeleteIcon.src = "../dist/svg/edit-3-svgrepo-com.svg";
-    
+    todoEditIcon.src = "../dist/svg/edit-3-svgrepo-com.svg";
+    todoDeleteIcon.src = "../dist/svg/trash-bin-minimalistic-svgrepo-com.svg";
+
     
     todoEdit.appendChild(todoEditIcon);
     todoDelete.appendChild(todoDeleteIcon);
