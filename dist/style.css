@@ -160,11 +160,11 @@ body {
   margin-left: auto;
 }
 
+
 .project-icons img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  margin-left: 0.5rem;
 }
 
 .project-icons img:hover {
@@ -286,11 +286,7 @@ img {
   margin-left: auto;
 }
 
-.todo-edit {
-  margin-right: 0.5rem;
-}
-
-.add-todo-dialog, .edit-todo-dialog {
+.add-todo-dialog {
   top: 40%;
   left: 43%;
   width: 500px;

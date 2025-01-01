@@ -50,9 +50,6 @@ export function initializeUI() {
     if (event.target === projectDialog) {
       closeProjectDialog();
     }
-    if (event.target === editDialog) {
-      closeEditDialog();
-    }
   });
 
   addProjectBtn.addEventListener("click", showProjectDialog);
