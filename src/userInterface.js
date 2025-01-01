@@ -1,3 +1,5 @@
+import { clearInputs } from "./todoFunctions";
+
 const sidebar = document.querySelector(".sidebar");
 const addTodoDialog = document.querySelector(".add-todo-dialog");
 const projectDialog = document.querySelector(".add-project-dialog");
@@ -15,6 +17,7 @@ function showAddTodoDialog() {
 
 function closeTodoDialog() {
   addTodoDialog.close();
+  clearInputs();
 }
 
 function showProjectDialog() {
