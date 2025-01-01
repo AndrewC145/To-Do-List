@@ -354,7 +354,7 @@ dialog select, dialog option {
 }
 
 
-.cancel-todo, .submit-btn, .cancel-project, .submit-project, .edit-todo, .cancel-edit {
+.cancel-todo, .submit-btn, .cancel-project, .submit-project {
   font-size: 1rem;
   color: var(--primary-color);
   background-color: var(--section-hover);
@@ -366,7 +366,7 @@ dialog select, dialog option {
   font-family: Poppins, "sans-serif";
 }
 
-.submit-btn, .submit-project, .edit-todo {
+.submit-btn, .submit-project {
   background-color: var(--secondary-color);
   color: white;
   margin: 0;

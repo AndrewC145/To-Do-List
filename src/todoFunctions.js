@@ -38,7 +38,7 @@ function createTodos() {
   let todaysDate = formatDate(new Date());
   let tomorrowsDate = formatDate(new Date(Date.now() + 86400000));
 
-  if (title === "" || priority === "Priority") {
+  if (title === "" || priority === "Priority" || !date) {
     alert("Please fill out the required fields");
     return;
   }
@@ -55,34 +55,6 @@ function createTodos() {
   }
 }
 
-function editTodos() {
-  const todoEditBtns = document.querySelectorAll(".todo-edit");
-  const todoContainers = document.querySelectorAll(".todoContainer");
-
-  todoEditBtns.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      const todo = inbox[index];
-      titleBox.value = todo.title;
-      descriptionBox.value = todo.description;
-      dateBox.value = todo.date;
-      priorityBox.value = todo.priority;
-
-      document.querySelector(".add-todo-dialog").showModal();
-      todoContainers[index].remove();
-      inbox.splice(index, 1);
-
-      const todayIndex = today.indexOf(todo);
-      if (todayIndex !== -1) {
-        today.splice(todayIndex, 1);
-      }
-
-      const tomorrowIndex = tomorrow.indexOf(todo);
-      if (tomorrowIndex !== -1) {
-        tomorrow.splice(tomorrowIndex, 1);
-      }
-    });
-  });
-}
 
 function displayTodos() {
   const todoSection = document.querySelector(".todoSection");
@@ -99,9 +71,7 @@ function displayTodos() {
     const todoBody = document.createElement("div");
     const todoDescription = document.createElement("p");
     const todoIcons = document.createElement("div");
-    const todoEdit = document.createElement("button");
     const todoDelete = document.createElement("button");
-    const todoEditIcon = document.createElement("img");
     const todoDeleteIcon = document.createElement("img");
 
     todoContainer.classList.add("todoContainer");
@@ -123,7 +93,6 @@ function displayTodos() {
     todoBody.classList.add("todoBody");
     todoDescription.classList.add("todoDescription");
     todoIcons.classList.add("todoIcons");
-    todoEdit.classList.add("todo-edit");
     todoDelete.classList.add("todo-trash");
 
     todoCheckbox.type = "checkbox";
@@ -131,13 +100,10 @@ function displayTodos() {
     todoPriority.textContent = todo.priority;
     todoDate.textContent = todo.date;
     todoDescription.textContent = todo.description;
-    todoEditIcon.src = "../dist/svg/edit-3-svgrepo-com.svg";
     todoDeleteIcon.src = "../dist/svg/trash-bin-minimalistic-svgrepo-com.svg";
 
     
-    todoEdit.appendChild(todoEditIcon);
     todoDelete.appendChild(todoDeleteIcon);
-    todoIcons.appendChild(todoEdit);
     todoIcons.appendChild(todoDelete);
 
     todoBody.appendChild(todoDescription);
@@ -156,7 +122,7 @@ function displayTodos() {
   });
 }
 
-function clearInputs() {
+export function clearInputs() {
   titleBox.value = "";
   descriptionBox.value = "";
   dateBox.value = "";
@@ -195,7 +161,6 @@ export function initializeTodoFunctions() {
     displayTodos();
     clearInputs();
     deleteTodos();
-    editTodos();
     console.log(inbox);
     console.log(today);
     console.log(tomorrow);
