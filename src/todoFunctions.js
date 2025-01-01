@@ -21,6 +21,13 @@ class Project {
   }
 }
 
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`
+}
+
 function createTodos() {
   const title = titleBox.value
   const description = descriptionBox.value
@@ -28,12 +35,27 @@ function createTodos() {
   let priority = priorityBox.value;
   const locationInbox = projectSelection.value;
 
+  let todaysDate = formatDate(new Date());
+  let tomorrowsDate = formatDate(new Date(Date.now() + 86400000));
+
+  console.log("Date:", date);
+  console.log("Today's Date:", todaysDate);
+  console.log("Tomorrow's Date:", tomorrowsDate);
+
   if (title === "" || priority === "Priority") {
-    alert("Please fill out the proper fields");
-  } else {
-    priority = priority.charAt(0).toUpperCase() + priority.slice(1);
-    const newTodo = new Project(title, description, date, priority, locationInbox);
-    inbox.push(newTodo);
+    alert("Please fill out the required fields");
+    return;
+  }
+
+  priority = priority.charAt(0).toUpperCase() + priority.slice(1);
+  const newTodo = new Project(title, description, date, priority, locationInbox);
+  inbox.push(newTodo);
+
+
+  if (date === todaysDate) {
+    today.push(newTodo);
+  } else if (date === tomorrowsDate) {
+    tomorrow.push(newTodo);
   }
 }
 
@@ -148,5 +170,8 @@ export function initializeTodoFunctions() {
     displayTodos();
     clearInputs();
     deleteTodos();
+    console.log(inbox);
+    console.log(today);
+    console.log(tomorrow);
   });
 }
