@@ -55,6 +55,35 @@ function createTodos() {
   }
 }
 
+function editTodos() {
+  const todoEditBtns = document.querySelectorAll(".todo-edit");
+  const todoContainers = document.querySelectorAll(".todoContainer");
+
+  todoEditBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      const todo = inbox[index];
+      titleBox.value = todo.title;
+      descriptionBox.value = todo.description;
+      dateBox.value = todo.date;
+      priorityBox.value = todo.priority;
+
+      document.querySelector(".add-todo-dialog").showModal();
+      todoContainers[index].remove();
+      inbox.splice(index, 1);
+
+      const todayIndex = today.indexOf(todo);
+      if (todayIndex !== -1) {
+        today.splice(todayIndex, 1);
+      }
+
+      const tomorrowIndex = tomorrow.indexOf(todo);
+      if (tomorrowIndex !== -1) {
+        tomorrow.splice(tomorrowIndex, 1);
+      }
+    });
+  });
+}
+
 function displayTodos() {
   const todoSection = document.querySelector(".todoSection");
   todoSection.innerHTML = "";
@@ -166,6 +195,7 @@ export function initializeTodoFunctions() {
     displayTodos();
     clearInputs();
     deleteTodos();
+    editTodos();
     console.log(inbox);
     console.log(today);
     console.log(tomorrow);
