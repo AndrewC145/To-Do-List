@@ -354,7 +354,7 @@ dialog select, dialog option {
 }
 
 
-.cancel-todo, .submit-btn, .cancel-project, .submit-project, .edit-todo {
+.cancel-todo, .submit-btn, .cancel-project, .submit-project, .edit-todo, .cancel-edit {
   font-size: 1rem;
   color: var(--primary-color);
   background-color: var(--section-hover);
