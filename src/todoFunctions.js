@@ -53,14 +53,22 @@ function createTodos() {
   } else if (date === tomorrowsDate) {
     tomorrow.push(newTodo);
   }
+
+  displayTodos(inbox);
 }
 
 
-function displayTodos() {
+function displayTodos(todos) {
   const todoSection = document.querySelector(".todoSection");
   todoSection.innerHTML = "";
 
-  inbox.forEach(todo => {
+  if (!todos || todos.length === 0) {
+    todoSection.innerHTML = "<h2>No todos to display</h2>";
+    todoSection.style.color = "white";
+    return;
+  } 
+
+  todos.forEach(todo => {
     const todoContainer = document.createElement("div");
     const todoItem = document.createElement("div");
     const todoHeader = document.createElement("div");
@@ -153,12 +161,36 @@ function deleteTodos() {
   })
 }
 
+export function switchInboxes() {
+  const inboxBtn = document.querySelector(".inbox-button");
+  const todayBtn = document.querySelector(".today-button");
+  const tomorrowBtn = document.querySelector(".tomorrow-button");
+  const inboxName = document.querySelector(".inboxName");
+
+  inboxBtn.addEventListener("click", () => {
+    inboxName.textContent = "Inbox";
+    displayTodos(inbox);
+  });
+
+  todayBtn.addEventListener("click", () => {
+    inboxName.textContent = "Today";
+    displayTodos(today);
+  });
+
+  tomorrowBtn.addEventListener("click", () => {
+    inboxName.textContent = "Tomorrow";
+    displayTodos(tomorrow);
+  });
+}
+
 
 export function initializeTodoFunctions() {
+  displayTodos(inbox);
+  switchInboxes();
   addTodoBtn.addEventListener("click", (event) => {
     event.preventDefault();
     createTodos();
-    displayTodos();
+    displayTodos(inbox);
     clearInputs();
     deleteTodos();
     console.log(inbox);
