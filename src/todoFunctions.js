@@ -161,7 +161,7 @@ function deleteTodos() {
   })
 }
 
-export function switchInboxes() {
+function switchInboxes() {
   const inboxBtn = document.querySelector(".inbox-button");
   const todayBtn = document.querySelector(".today-button");
   const tomorrowBtn = document.querySelector(".tomorrow-button");
@@ -190,7 +190,14 @@ export function initializeTodoFunctions() {
   addTodoBtn.addEventListener("click", (event) => {
     event.preventDefault();
     createTodos();
-    displayTodos(inbox);
+    const selectedInbox = document.querySelector(".inboxName").textContent;
+    if (selectedInbox === "Inbox") {
+      displayTodos(inbox);
+    } else if (selectedInbox === "Today") {
+      displayTodos(today);
+    } else if (selectedInbox === "Tomorrow") {
+      displayTodos(tomorrow);
+    }
     clearInputs();
     deleteTodos();
     console.log(inbox);
