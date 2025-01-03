@@ -65,6 +65,11 @@ function createTodos() {
     week.push(newTodo);
   }
 
+  const project = projects.find((project) => project.title === locationInbox);
+  if (project) {
+    project.todos.push(newTodo);
+  }
+
   displayTodos(inbox);
 }
 
@@ -185,6 +190,7 @@ function switchInboxes() {
   const tomorrowBtn = document.querySelector(".tomorrow-button");
   const weekBtn = document.querySelector(".week-button");
   const inboxName = document.querySelector(".inboxName");
+  const projectButton = document.querySelectorAll(".project-button");
 
   inboxBtn.addEventListener("click", () => {
     inboxName.textContent = "Inbox";
@@ -210,12 +216,19 @@ function switchInboxes() {
 
 function createProject() {
   const projectTitle = document.querySelector(".project-title-box").value;
+
+  if (projects.some((project) => project.title === projectTitle)) {
+    alert("Project already exists");
+    return;
+  }
+
   if (projectTitle === "" || projectTitle.length > 24) {
     alert("Please enter a valid project title");
     return;
   }
 
   const newProject = new ProjectList(projectTitle);
+  projects.push(newProject);
   
   const projectOption = document.createElement("option");
   projectOption.textContent = projectTitle;
@@ -242,6 +255,12 @@ function createProject() {
   projectContainer.appendChild(projectButton);
   projectContainer.appendChild(projectIcon);
   projectSection.appendChild(projectContainer);
+
+  projectButton.addEventListener("click", () => {
+    const inboxName = document.querySelector(".inboxName");
+    inboxName.textContent = projectTitle;
+    displayTodos(newProject.todos);
+  });
 }
 
 function deleteProject() {
