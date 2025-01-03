@@ -4,6 +4,7 @@ const descriptionBox = document.querySelector(".description-box");
 const dateBox = document.querySelector(".date-box");
 const priorityBox = document.querySelector(".priority-box");
 const projectSelection = document.querySelector("#project-selection");
+const submitProject = document.querySelector(".submit-project")
 
 const inbox = [];
 const today = [];
@@ -191,6 +192,33 @@ function switchInboxes() {
   });
 }
 
+function createProject() {
+  const projectTitle = document.querySelector(".project-title-box").value;
+
+  const projectContainer = document.createElement("div");
+  const projectButton = document.createElement("button");
+  const projectIcon = document.createElement("div");
+  const deleteProject = document.createElement("button");
+  const deleteIcon = document.createElement("img");
+  const projectSection = document.querySelector(".projects-section");
+
+  projectSection.innerHTML = "";
+
+  projectContainer.classList.add("project");
+  projectButton.classList.add("project-button");
+  projectIcon.classList.add("project-icons");
+  deleteProject.classList.add("delete-project");
+
+  projectButton.textContent = projectTitle;
+  deleteIcon.src = "../dist/svg/trash-bin-minimalistic-svgrepo-com.svg";
+  deleteProject.appendChild(deleteIcon);
+
+  projectIcon.appendChild(deleteProject);
+  projectContainer.appendChild(projectButton);
+  projectContainer.appendChild(projectIcon);
+  projectSection.appendChild(projectContainer);
+}
+
 
 export function initializeTodoFunctions() {
   displayTodos(inbox);
@@ -207,10 +235,15 @@ export function initializeTodoFunctions() {
       displayTodos(tomorrow);
     } else if (selectedInbox === "Week") {
       displayTodos(week);
-    }
+    } 
     clearInputs();
     console.log(inbox);
     console.log(today);
     console.log(tomorrow);
   });
+  submitProject.addEventListener("click", (event) => {
+    event.preventDefault();
+    createProject();
+  });
+
 }
