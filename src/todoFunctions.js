@@ -37,6 +37,7 @@ function createTodos() {
 
   let todaysDate = formatDate(new Date());
   let tomorrowsDate = formatDate(new Date(Date.now() + 86400000));
+  let weekDate = formatDate(new Date(Date.now() + 604800000));
 
   if (title === "" || priority === "Priority" || !date) {
     alert("Please fill out the required fields");
@@ -52,6 +53,8 @@ function createTodos() {
     today.push(newTodo);
   } else if (date === tomorrowsDate) {
     tomorrow.push(newTodo);
+  } else if (date === weekDate) {
+    week.push(newTodo);
   }
 
   displayTodos(inbox);
@@ -150,7 +153,6 @@ function displayTodos(todos) {
   });
 }
 
-// Bug: Deleting A todo from another inbox does not update the main inbox
 
 export function clearInputs() {
   titleBox.value = "";
@@ -165,6 +167,7 @@ function switchInboxes() {
   const inboxBtn = document.querySelector(".inbox-button");
   const todayBtn = document.querySelector(".today-button");
   const tomorrowBtn = document.querySelector(".tomorrow-button");
+  const weekBtn = document.querySelector(".week-button");
   const inboxName = document.querySelector(".inboxName");
 
   inboxBtn.addEventListener("click", () => {
@@ -180,6 +183,11 @@ function switchInboxes() {
   tomorrowBtn.addEventListener("click", () => {
     inboxName.textContent = "Tomorrow";
     displayTodos(tomorrow);
+  });
+
+  weekBtn.addEventListener("click", () => {
+    inboxName.textContent = "Week";
+    displayTodos(week);
   });
 }
 
@@ -197,6 +205,8 @@ export function initializeTodoFunctions() {
       displayTodos(today);
     } else if (selectedInbox === "Tomorrow") {
       displayTodos(tomorrow);
+    } else if (selectedInbox === "Week") {
+      displayTodos(week);
     }
     clearInputs();
     console.log(inbox);
