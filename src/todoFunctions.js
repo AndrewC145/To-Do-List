@@ -68,7 +68,7 @@ function displayTodos(todos) {
     return;
   } 
 
-  todos.forEach(todo => {
+  todos.forEach((todo, index) => {
     const todoContainer = document.createElement("div");
     const todoItem = document.createElement("div");
     const todoHeader = document.createElement("div");
@@ -127,8 +127,20 @@ function displayTodos(todos) {
     todoContainer.appendChild(todoItem);
 
     todoSection.appendChild(todoContainer);
+
+    todoDelete.addEventListener("click", () => {
+      todoContainer.remove();
+      todos.splice(index, 1);
+      const inboxIndex = inbox.findIndex((inboxTodo) => inboxTodo.title === todo.title);
+      if (inboxIndex !== -1) {
+        inbox.splice(inboxIndex, 1);
+      }
+      displayTodos(todos);
+    });
   });
 }
+
+// Bug: Deleting A todo from another inbox does not update the main inbox
 
 export function clearInputs() {
   titleBox.value = "";
@@ -141,7 +153,6 @@ export function clearInputs() {
 
 function deleteTodos() {
   const checkboxes = document.querySelectorAll(".check");
-  const todoDeleteBtns = document.querySelectorAll(".todo-trash");
   const todoContainers = document.querySelectorAll(".todoContainer");
 
   checkboxes.forEach((checkbox, index) => {
@@ -152,13 +163,6 @@ function deleteTodos() {
       }
     });
   });
-
-  todoDeleteBtns.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      todoContainers[index].remove();
-      inbox.splice(index, 1);
-    })
-  })
 }
 
 function switchInboxes() {
