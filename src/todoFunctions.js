@@ -22,6 +22,13 @@ class Project {
   }
 }
 
+class ProjectList {
+  constructor(title) {
+    this.title = title;
+    this.todos = [];
+  }
+}
+
 function formatDate(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -136,10 +143,18 @@ function displayTodos(todos) {
     todoDelete.addEventListener("click", () => {
       todoContainer.remove();
       todos.splice(index, 1);
-      const inboxIndex = inbox.findIndex((inboxTodo) => inboxTodo.title === todo.title);
-      if (inboxIndex !== -1) {
-        inbox.splice(inboxIndex, 1);
-      }
+
+      const removeTodo = (array) => {
+        const index = array.findIndex((arrayTodo) => arrayTodo.title === todo.title);
+        if (index !== -1) {
+          array.splice(index, 1);
+        }
+      };
+
+      removeTodo(inbox);
+      removeTodo(today);
+      removeTodo(tomorrow);
+      removeTodo(week);
       displayTodos(todos);
     });
     todoCheckbox.addEventListener("click", () => {
@@ -192,8 +207,14 @@ function switchInboxes() {
   });
 }
 
+
 function createProject() {
   const projectTitle = document.querySelector(".project-title-box").value;
+  if (projectTitle === "" || projectTitle.length > 24) {
+    alert("Please enter a valid project title");
+    return;
+  }
+
 
   const projectContainer = document.createElement("div");
   const projectButton = document.createElement("button");
@@ -219,10 +240,14 @@ function createProject() {
 }
 
 function deleteProject() {
-  const deleteProject = document.querySelector(".delete-project");
-  const projectContainer = document.querySelector(".project");
-  deleteProject.addEventListener("click", () => {
-    projectContainer.remove();
+  const deleteProject = document.querySelectorAll(".delete-project");
+  
+  deleteProject.forEach((button) => {
+    button.addEventListener("click", () => {
+      let projectContainer = button.parentElement.parentElement;
+      projectContainer.remove();
+      projects.splice(projects.indexOf(projectContainer), 1);
+    });
   });
 }
 
@@ -255,5 +280,4 @@ export function initializeTodoFunctions() {
     deleteProject();
     console.log(projects);
   });
-
 }
