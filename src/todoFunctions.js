@@ -269,10 +269,6 @@ export function initializeTodoFunctions() {
       displayTodos(week);
     } 
     clearInputs();
-    console.log(inbox);
-    console.log(today);
-    console.log(tomorrow);
-    console.log(week);
   });
   submitProject.addEventListener("click", (event) => {
     event.preventDefault();
