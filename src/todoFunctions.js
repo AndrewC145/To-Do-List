@@ -202,7 +202,6 @@ function createProject() {
   const deleteIcon = document.createElement("img");
   const projectSection = document.querySelector(".projects-section");
 
-  projectSection.innerHTML = "";
 
   projectContainer.classList.add("project");
   projectButton.classList.add("project-button");
@@ -217,6 +216,13 @@ function createProject() {
   projectContainer.appendChild(projectButton);
   projectContainer.appendChild(projectIcon);
   projectSection.appendChild(projectContainer);
+}
+
+function deleteProject() {
+  const deleteProject = document.querySelector(".delete-project");
+  deleteProject.addEventListener("click", () => {
+    deleteProject.parentElement.remove();
+  });
 }
 
 

@@ -3,6 +3,7 @@ import { clearInputs } from "./todoFunctions";
 const sidebar = document.querySelector(".sidebar");
 const addTodoDialog = document.querySelector(".add-todo-dialog");
 const projectDialog = document.querySelector(".add-project-dialog");
+const projectTitle = document.querySelector(".project-title-box");
 
 
 function toggleSidebar() {
@@ -22,6 +23,7 @@ function closeTodoDialog() {
 
 function showProjectDialog() {
   projectDialog.showModal();
+  projectTitle.value = "";
 }
 
 function closeProjectDialog() {
@@ -33,8 +35,9 @@ export function initializeUI() {
   const addTodoBtn = document.querySelector(".add-todo");
   const cancelTodoBtn = document.querySelector(".cancel-todo");
   const addTodoDialog = document.querySelector(".add-todo-dialog");
-  const addProjectBtn = document.querySelector(".add-project");
+  const addProjectDialog = document.querySelector(".add-project");
   const cancelProjectBtn = document.querySelector(".cancel-project");
+  const submitProjectBtn = document.querySelector(".submit-project");
 
   toggleSidebarBtns.forEach((btn) => {
     btn.addEventListener("click", toggleSidebar);
@@ -52,7 +55,7 @@ export function initializeUI() {
     }
   });
 
-  addProjectBtn.addEventListener("click", showProjectDialog);
+  addProjectDialog.addEventListener("click", showProjectDialog);
   cancelProjectBtn.addEventListener("click", closeProjectDialog);
-
+  submitProjectBtn.addEventListener("click", closeProjectDialog);
 }
