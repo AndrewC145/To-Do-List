@@ -128,6 +128,7 @@ function displayTodos(todos) {
 
     todoSection.appendChild(todoContainer);
 
+
     todoDelete.addEventListener("click", () => {
       todoContainer.remove();
       todos.splice(index, 1);
@@ -137,6 +138,15 @@ function displayTodos(todos) {
       }
       displayTodos(todos);
     });
+    todoCheckbox.addEventListener("click", () => {
+      if (todoCheckbox.checked) {
+        todoContainer.style.textDecoration = "line-through";
+        todoContainer.style.color = "grey";
+      } else {
+        todoContainer.style.textDecoration = "none";
+        todoContainer.style.color = "black";
+      }
+    })
   });
 }
 
@@ -149,20 +159,6 @@ export function clearInputs() {
   priorityBox.value = "Priority";
 
   document.querySelector(".add-todo-dialog").close();
-}
-
-function deleteTodos() {
-  const checkboxes = document.querySelectorAll(".check");
-  const todoContainers = document.querySelectorAll(".todoContainer");
-
-  checkboxes.forEach((checkbox, index) => {
-    checkbox.addEventListener("click", () => {
-      if (checkbox.checked) {
-        todoContainers[index].remove();
-        inbox.splice(index, 1);
-      }
-    });
-  });
 }
 
 function switchInboxes() {
@@ -203,7 +199,6 @@ export function initializeTodoFunctions() {
       displayTodos(tomorrow);
     }
     clearInputs();
-    deleteTodos();
     console.log(inbox);
     console.log(today);
     console.log(tomorrow);
