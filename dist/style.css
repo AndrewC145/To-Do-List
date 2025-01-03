@@ -152,18 +152,21 @@ body {
 }
 
 .project-button {
-  font-size: 1rem;
+  font-size: 1.15rem;
+  font-family: Poppins, "sans-serif";
   color: var(--primary-color);
 }
 
 .project-icons {
+  display: flex;
+  align-items: center;
   margin-left: auto;
 }
 
 
 .project-icons img {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
 }
 
