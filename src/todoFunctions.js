@@ -220,8 +220,9 @@ function createProject() {
 
 function deleteProject() {
   const deleteProject = document.querySelector(".delete-project");
+  const projectContainer = document.querySelector(".project");
   deleteProject.addEventListener("click", () => {
-    deleteProject.parentElement.remove();
+    projectContainer.remove();
   });
 }
 
@@ -246,10 +247,13 @@ export function initializeTodoFunctions() {
     console.log(inbox);
     console.log(today);
     console.log(tomorrow);
+    console.log(week);
   });
   submitProject.addEventListener("click", (event) => {
     event.preventDefault();
     createProject();
+    deleteProject();
+    console.log(projects);
   });
 
 }
