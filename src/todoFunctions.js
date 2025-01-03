@@ -215,7 +215,12 @@ function createProject() {
     return;
   }
 
-
+  const newProject = new ProjectList(projectTitle);
+  
+  const projectOption = document.createElement("option");
+  projectOption.textContent = projectTitle;
+  projectOption.value = projectTitle;
+  projectSelection.appendChild(projectOption);
   const projectContainer = document.createElement("div");
   const projectButton = document.createElement("button");
   const projectIcon = document.createElement("div");
