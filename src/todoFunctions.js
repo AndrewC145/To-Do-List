@@ -150,6 +150,7 @@ function displayTodos(todos) {
       todos.splice(index, 1);
 
       const removeTodo = (array) => {
+        if (!array) return;
         const index = array.findIndex((arrayTodo) => arrayTodo.title === todo.title);
         if (index !== -1) {
           array.splice(index, 1);
@@ -160,6 +161,12 @@ function displayTodos(todos) {
       removeTodo(today);
       removeTodo(tomorrow);
       removeTodo(week);
+
+      const project = projects.find((project) => project.title === todo.locationInbox);
+      if (project && project.todos) {
+        removeTodo(project.todos);
+      }
+
       displayTodos(todos);
     });
     todoCheckbox.addEventListener("click", () => {
@@ -190,7 +197,6 @@ function switchInboxes() {
   const tomorrowBtn = document.querySelector(".tomorrow-button");
   const weekBtn = document.querySelector(".week-button");
   const inboxName = document.querySelector(".inboxName");
-  const projectButton = document.querySelectorAll(".project-button");
 
   inboxBtn.addEventListener("click", () => {
     inboxName.textContent = "Inbox";
@@ -264,16 +270,76 @@ function createProject() {
 }
 
 function deleteProject() {
-  const deleteProject = document.querySelectorAll(".delete-project");
-  
-  deleteProject.forEach((button) => {
+  const deleteProjectButtons = document.querySelectorAll(".delete-project");
+
+  deleteProjectButtons.forEach((button) => {
     button.addEventListener("click", () => {
+
       let projectContainer = button.parentElement.parentElement;
+      const projectTitle = projectContainer.querySelector(".project-button").textContent;
+
+
       projectContainer.remove();
-      projects.splice(projects.indexOf(projectContainer), 1);
+
+ 
+      const projectIndex = projects.findIndex((project) => project.title === projectTitle);
+      if (projectIndex !== -1) {
+        const deletedProject = projects.splice(projectIndex, 1)[0];
+
+
+        const removeTodoFromInboxes = (todo) => {
+          const removeFromArray = (array) => {
+            const index = array.findIndex((arrayTodo) => arrayTodo.title === todo.title);
+            if (index !== -1) {
+              array.splice(index, 1);
+            }
+          };
+
+          removeFromArray(inbox);
+          removeFromArray(today);
+          removeFromArray(tomorrow);
+          removeFromArray(week);
+        };
+
+        deletedProject.todos.forEach(removeTodoFromInboxes);
+      }
+
+
+      const projectSelection = document.querySelector("#project-selection");
+      const projectOption = Array.from(projectSelection.options).find(
+        (option) => option.textContent === projectTitle
+      );
+      if (projectOption) {
+        projectOption.remove();
+      }
+
+      const inboxName = document.querySelector(".inboxName").textContent;
+      if (inboxName === projectTitle) {
+        document.querySelector(".inboxName").textContent = "Inbox";
+        displayTodos(inbox);
+      }
+
+      refreshTodos();
     });
   });
 }
+
+function refreshTodos() {
+  const selectedInbox = document.querySelector(".inboxName").textContent;
+  if (selectedInbox === "Inbox") {
+    displayTodos(inbox);
+  } else if (selectedInbox === "Today") {
+    displayTodos(today);
+  } else if (selectedInbox === "Tomorrow") {
+    displayTodos(tomorrow);
+  } else if (selectedInbox === "Week") {
+    displayTodos(week);
+  } else {
+    const project = projects.find((project) => project.title === selectedInbox);
+    displayTodos(project.todos);
+  }
+}
+
 
 
 export function initializeTodoFunctions() {
@@ -282,17 +348,8 @@ export function initializeTodoFunctions() {
   addTodoBtn.addEventListener("click", (event) => {
     event.preventDefault();
     createTodos();
-    const selectedInbox = document.querySelector(".inboxName").textContent;
-    if (selectedInbox === "Inbox") {
-      displayTodos(inbox);
-    } else if (selectedInbox === "Today") {
-      displayTodos(today);
-    } else if (selectedInbox === "Tomorrow") {
-      displayTodos(tomorrow);
-    } else if (selectedInbox === "Week") {
-      displayTodos(week);
-    } 
     clearInputs();
+    refreshTodos();
   });
   submitProject.addEventListener("click", (event) => {
     event.preventDefault();
