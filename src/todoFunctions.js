@@ -14,6 +14,38 @@ const tomorrow = [];
 const week = [];
 const projects = [];
 
+function saveProjectsToLocalStorage() {
+  localStorage.setItem('inbox', JSON.stringify(inbox));
+  localStorage.setItem('today', JSON.stringify(today));
+  localStorage.setItem('tomorrow', JSON.stringify(tomorrow));
+  localStorage.setItem('week', JSON.stringify(week));
+  localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+function getProjectsFromLocalStorage() {
+  const inboxData = JSON.parse(localStorage.getItem('inbox'));
+  const todayData = JSON.parse(localStorage.getItem('today'));
+  const tomorrowData = JSON.parse(localStorage.getItem('tomorrow'));
+  const weekData = JSON.parse(localStorage.getItem('week'));
+  const projectsData = JSON.parse(localStorage.getItem('projects'));
+
+  if (inboxData) {
+    inbox.push(...inboxData);
+  }
+  if (todayData) {
+    today.push(...todayData);
+  }
+  if (tomorrowData) {
+    tomorrow.push(...tomorrowData);
+  }
+  if (weekData) {
+    week.push(...weekData);
+  }
+  if (projectsData) {
+    projects.push(...projectsData);
+  }
+}
+
 // Class for Creating Todos
 class Project {
   constructor(title, description, date, priority, locationInbox) {
@@ -85,6 +117,8 @@ function createTodos() {
   if (project) {
     project.todos.push(newTodo);
   }
+
+  saveProjectsToLocalStorage();
 
   // Display the todos in the inbox
   displayTodos(inbox);
@@ -359,6 +393,8 @@ function deleteProject() {
         displayTodos(inbox);
       }
 
+      saveProjectsToLocalStorage();
+
       // Refresh other todo inboxes
       refreshTodos();
     });
@@ -382,6 +418,7 @@ function refreshTodos() {
 }
 
 export function initializeTodoFunctions() {
+  getProjectsFromLocalStorage();
   displayTodos(inbox);
   switchInboxes();
   addTodoBtn.addEventListener('click', (event) => {
