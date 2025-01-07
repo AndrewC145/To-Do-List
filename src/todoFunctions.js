@@ -1,11 +1,11 @@
 // Starting DOM Elements
-const addTodoBtn = document.querySelector(".submit-btn");
-const titleBox = document.querySelector(".title-box");
-const descriptionBox = document.querySelector(".description-box");
-const dateBox = document.querySelector(".date-box");
-const priorityBox = document.querySelector(".priority-box");
-const projectSelection = document.querySelector("#project-selection");
-const submitProject = document.querySelector(".submit-project")
+const addTodoBtn = document.querySelector('.submit-btn');
+const titleBox = document.querySelector('.title-box');
+const descriptionBox = document.querySelector('.description-box');
+const dateBox = document.querySelector('.date-box');
+const priorityBox = document.querySelector('.priority-box');
+const projectSelection = document.querySelector('#project-selection');
+const submitProject = document.querySelector('.submit-project');
 
 // Global Inbox Arrays
 const inbox = [];
@@ -36,16 +36,16 @@ class ProjectList {
 // Function to format date to yyyy-mm-dd
 function formatDate(date) {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 // Function to Create Todos for Inbox arrays
 function createTodos() {
   // Get values from input fields from add todo dialog
-  const title = titleBox.value
-  const description = descriptionBox.value
+  const title = titleBox.value;
+  const description = descriptionBox.value;
   const date = dateBox.value;
   let priority = priorityBox.value;
   const locationInbox = projectSelection.value;
@@ -55,16 +55,21 @@ function createTodos() {
   let tomorrowsDate = formatDate(new Date(Date.now() + 86400000));
   let weekDate = formatDate(new Date(Date.now() + 604800000));
 
-  if (title === "" || priority === "Priority" || !date) {
-    alert("Please fill out the required fields");
+  if (title === '' || priority === 'Priority' || !date) {
+    alert('Please fill out the required fields');
     return;
   }
 
   // Capitalize the First Letter of Each Priority
   priority = priority.charAt(0).toUpperCase() + priority.slice(1);
-  const newTodo = new Project(title, description, date, priority, locationInbox);
+  const newTodo = new Project(
+    title,
+    description,
+    date,
+    priority,
+    locationInbox
+  );
   inbox.push(newTodo); // Adds every todo to the main inbox array
-
 
   // If the date is today, tomorrow, or a week from now, add the todo to the respective array
   if (date === todaysDate) {
@@ -85,68 +90,66 @@ function createTodos() {
   displayTodos(inbox);
 }
 
-
 function displayTodos(todos) {
   // Get the todo section and clear it
-  const todoSection = document.querySelector(".todoSection");
-  todoSection.innerHTML = "";
+  const todoSection = document.querySelector('.todoSection');
+  todoSection.innerHTML = '';
 
   if (!todos || todos.length === 0) {
-    todoSection.innerHTML = "<h2>No todos to display</h2>";
-    todoSection.style.color = "white";
+    todoSection.innerHTML = '<h2>No todos to display</h2>';
+    todoSection.style.color = 'white';
     return;
-  } 
+  }
 
   // Loop through the todos and create the todo elements
   todos.forEach((todo, index) => {
-    const todoContainer = document.createElement("div");
-    const todoItem = document.createElement("div");
-    const todoHeader = document.createElement("div");
-    const todoCheckbox = document.createElement("input");
-    const todoTitle = document.createElement("h3");
-    const todoPriority = document.createElement("span");
-    const todoDate = document.createElement("h3");
-    const todoBody = document.createElement("div");
-    const todoDescription = document.createElement("p");
-    const todoIcons = document.createElement("div");
-    const todoDelete = document.createElement("button");
-    const todoDeleteIcon = document.createElement("img");
+    const todoContainer = document.createElement('div');
+    const todoItem = document.createElement('div');
+    const todoHeader = document.createElement('div');
+    const todoCheckbox = document.createElement('input');
+    const todoTitle = document.createElement('h3');
+    const todoPriority = document.createElement('span');
+    const todoDate = document.createElement('h3');
+    const todoBody = document.createElement('div');
+    const todoDescription = document.createElement('p');
+    const todoIcons = document.createElement('div');
+    const todoDelete = document.createElement('button');
+    const todoDeleteIcon = document.createElement('img');
 
-    todoContainer.classList.add("todoContainer");
-    todoItem.classList.add("todoList");
-    todoHeader.classList.add("todoHeader");
-    todoCheckbox.classList.add("check");
-    todoTitle.classList.add("todoTitle");
-    todoPriority.classList.add("todo-priority");
+    todoContainer.classList.add('todoContainer');
+    todoItem.classList.add('todoList');
+    todoHeader.classList.add('todoHeader');
+    todoCheckbox.classList.add('check');
+    todoTitle.classList.add('todoTitle');
+    todoPriority.classList.add('todo-priority');
 
-    if (todo.priority === "High") {
-      todoPriority.classList.add("high");
-    } else if (todo.priority === "Medium") {
-      todoPriority.classList.add("medium");
+    if (todo.priority === 'High') {
+      todoPriority.classList.add('high');
+    } else if (todo.priority === 'Medium') {
+      todoPriority.classList.add('medium');
     } else {
-      todoPriority.classList.add("low");
+      todoPriority.classList.add('low');
     }
 
-    todoDate.classList.add("date");
-    todoBody.classList.add("todoBody");
-    todoDescription.classList.add("todoDescription");
-    todoIcons.classList.add("todoIcons");
-    todoDelete.classList.add("todo-trash");
+    todoDate.classList.add('date');
+    todoBody.classList.add('todoBody');
+    todoDescription.classList.add('todoDescription');
+    todoIcons.classList.add('todoIcons');
+    todoDelete.classList.add('todo-trash');
 
-    todoCheckbox.type = "checkbox";
+    todoCheckbox.type = 'checkbox';
     todoTitle.textContent = todo.title;
     todoPriority.textContent = todo.priority;
     todoDate.textContent = todo.date;
     todoDescription.textContent = todo.description;
-    todoDeleteIcon.src = "../dist/svg/trash-bin-minimalistic-svgrepo-com.svg";
+    todoDeleteIcon.src = '../dist/svg/trash-bin-minimalistic-svgrepo-com.svg';
 
-    
     todoDelete.appendChild(todoDeleteIcon);
     todoIcons.appendChild(todoDelete);
 
     todoBody.appendChild(todoDescription);
     todoBody.appendChild(todoIcons);
-    
+
     todoHeader.appendChild(todoCheckbox);
     todoHeader.appendChild(todoTitle);
     todoHeader.appendChild(todoPriority);
@@ -159,14 +162,16 @@ function displayTodos(todos) {
     todoSection.appendChild(todoContainer);
 
     // When the delete button is clicked, remove the todo from the inbox array and display the updated todos
-    todoDelete.addEventListener("click", () => {
+    todoDelete.addEventListener('click', () => {
       todoContainer.remove();
       todos.splice(index, 1);
 
       // Finds the index of the todo item in the array that matches the title of the todo item being deleted
       const removeTodo = (array) => {
         if (!array) return;
-        const index = array.findIndex((arrayTodo) => arrayTodo.title === todo.title);
+        const index = array.findIndex(
+          (arrayTodo) => arrayTodo.title === todo.title
+        );
         // If found, remove the todo item from the array
         if (index !== -1) {
           array.splice(index, 1);
@@ -180,7 +185,9 @@ function displayTodos(todos) {
       removeTodo(week);
 
       // Finds the project that matches the locationInbox of the todo item being deleted
-      const project = projects.find((project) => project.title === todo.locationInbox);
+      const project = projects.find(
+        (project) => project.title === todo.locationInbox
+      );
       // If found, remove the todo item from the project
       if (project && project.todos) {
         removeTodo(project.todos);
@@ -191,98 +198,95 @@ function displayTodos(todos) {
     });
 
     // When the checkbox is clicked, add a line-through to the todo title and change the color to grey
-    todoCheckbox.addEventListener("click", () => {
+    todoCheckbox.addEventListener('click', () => {
       if (todoCheckbox.checked) {
-        todoContainer.style.textDecoration = "line-through";
-        todoContainer.style.color = "grey";
+        todoContainer.style.textDecoration = 'line-through';
+        todoContainer.style.color = 'grey';
       } else {
-        todoContainer.style.textDecoration = "none";
-        todoContainer.style.color = "black";
+        todoContainer.style.textDecoration = 'none';
+        todoContainer.style.color = 'black';
       }
-    })
+    });
   });
 }
 
-
 export function clearInputs() {
-  titleBox.value = "";
-  descriptionBox.value = "";
-  dateBox.value = "";
-  priorityBox.value = "Priority";
+  titleBox.value = '';
+  descriptionBox.value = '';
+  dateBox.value = '';
+  priorityBox.value = 'Priority';
 
-  document.querySelector(".add-todo-dialog").close();
+  document.querySelector('.add-todo-dialog').close();
 }
 
 function switchInboxes() {
-  const inboxBtn = document.querySelector(".inbox-button");
-  const todayBtn = document.querySelector(".today-button");
-  const tomorrowBtn = document.querySelector(".tomorrow-button");
-  const weekBtn = document.querySelector(".week-button");
-  const inboxName = document.querySelector(".inboxName");
+  const inboxBtn = document.querySelector('.inbox-button');
+  const todayBtn = document.querySelector('.today-button');
+  const tomorrowBtn = document.querySelector('.tomorrow-button');
+  const weekBtn = document.querySelector('.week-button');
+  const inboxName = document.querySelector('.inboxName');
 
   // When the respective inbox button is clicked, display the todos in the respective inbox
-  inboxBtn.addEventListener("click", () => {
-    inboxName.textContent = "Inbox";
+  inboxBtn.addEventListener('click', () => {
+    inboxName.textContent = 'Inbox';
     displayTodos(inbox);
   });
 
-  todayBtn.addEventListener("click", () => {
-    inboxName.textContent = "Today";
+  todayBtn.addEventListener('click', () => {
+    inboxName.textContent = 'Today';
     displayTodos(today);
   });
 
-  tomorrowBtn.addEventListener("click", () => {
-    inboxName.textContent = "Tomorrow";
+  tomorrowBtn.addEventListener('click', () => {
+    inboxName.textContent = 'Tomorrow';
     displayTodos(tomorrow);
   });
 
-  weekBtn.addEventListener("click", () => {
-    inboxName.textContent = "Week";
+  weekBtn.addEventListener('click', () => {
+    inboxName.textContent = 'Week';
     displayTodos(week);
   });
 }
 
-
 function createProject() {
-  const projectTitle = document.querySelector(".project-title-box").value;
+  const projectTitle = document.querySelector('.project-title-box').value;
 
   // If at least one project with the same title exists, alert the user
   if (projects.some((project) => project.title === projectTitle)) {
-    alert("Project already exists");
+    alert('Project already exists');
     return;
   }
 
-  if (projectTitle === "" || projectTitle.length > 24) {
-    alert("Please enter a valid project title");
+  if (projectTitle === '' || projectTitle.length > 24) {
+    alert('Please enter a valid project title');
     return;
   }
 
   // Create a new project and add it to the projects array
   const newProject = new ProjectList(projectTitle);
   projects.push(newProject);
-  
+
   // Creates a new option in the project selection dropdown
-  const projectOption = document.createElement("option");
+  const projectOption = document.createElement('option');
   projectOption.textContent = projectTitle;
   projectOption.value = projectTitle;
   projectSelection.appendChild(projectOption);
 
   // Create a new project container and add it to the project section
-  const projectContainer = document.createElement("div");
-  const projectButton = document.createElement("button");
-  const projectIcon = document.createElement("div");
-  const deleteProject = document.createElement("button");
-  const deleteIcon = document.createElement("img");
-  const projectSection = document.querySelector(".projects-section");
+  const projectContainer = document.createElement('div');
+  const projectButton = document.createElement('button');
+  const projectIcon = document.createElement('div');
+  const deleteProject = document.createElement('button');
+  const deleteIcon = document.createElement('img');
+  const projectSection = document.querySelector('.projects-section');
 
-
-  projectContainer.classList.add("project");
-  projectButton.classList.add("project-button");
-  projectIcon.classList.add("project-icons");
-  deleteProject.classList.add("delete-project");
+  projectContainer.classList.add('project');
+  projectButton.classList.add('project-button');
+  projectIcon.classList.add('project-icons');
+  deleteProject.classList.add('delete-project');
 
   projectButton.textContent = projectTitle;
-  deleteIcon.src = "../dist/svg/trash-bin-minimalistic-svgrepo-com.svg";
+  deleteIcon.src = '../dist/svg/trash-bin-minimalistic-svgrepo-com.svg';
   deleteProject.appendChild(deleteIcon);
 
   projectIcon.appendChild(deleteProject);
@@ -291,34 +295,39 @@ function createProject() {
   projectSection.appendChild(projectContainer);
 
   // When the project button is clicked, display the todos in the respective project
-  projectButton.addEventListener("click", () => {
-    const inboxName = document.querySelector(".inboxName");
+  projectButton.addEventListener('click', () => {
+    const inboxName = document.querySelector('.inboxName');
     inboxName.textContent = projectTitle;
     displayTodos(newProject.todos);
   });
 }
 
 function deleteProject() {
-  const deleteProjectButtons = document.querySelectorAll(".delete-project");
+  const deleteProjectButtons = document.querySelectorAll('.delete-project');
 
   deleteProjectButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       // Get the project container and the project title
       let projectContainer = button.parentElement.parentElement;
-      const projectTitle = projectContainer.querySelector(".project-button").textContent;
+      const projectTitle =
+        projectContainer.querySelector('.project-button').textContent;
 
       // Remove the project container from the project section DOM
-      projectContainer.remove(); 
+      projectContainer.remove();
 
       // Find the project with the same title as the project being deleted
-      const projectIndex = projects.findIndex((project) => project.title === projectTitle);
+      const projectIndex = projects.findIndex(
+        (project) => project.title === projectTitle
+      );
       if (projectIndex !== -1) {
         const deletedProject = projects.splice(projectIndex, 1)[0];
 
         // Remove the todos from the respective inbox arrays
         const removeTodoFromInboxes = (todo) => {
           const removeFromArray = (array) => {
-            const index = array.findIndex((arrayTodo) => arrayTodo.title === todo.title);
+            const index = array.findIndex(
+              (arrayTodo) => arrayTodo.title === todo.title
+            );
             if (index !== -1) {
               array.splice(index, 1);
             }
@@ -335,7 +344,7 @@ function deleteProject() {
       }
 
       // Remove the project from the project selection dropdown
-      const projectSelection = document.querySelector("#project-selection");
+      const projectSelection = document.querySelector('#project-selection');
       const projectOption = Array.from(projectSelection.options).find(
         (option) => option.textContent === projectTitle
       );
@@ -344,9 +353,9 @@ function deleteProject() {
       }
 
       // If the inbox name is the same as the project being deleted, display the inbox todos
-      const inboxName = document.querySelector(".inboxName").textContent;
+      const inboxName = document.querySelector('.inboxName').textContent;
       if (inboxName === projectTitle) {
-        document.querySelector(".inboxName").textContent = "Inbox";
+        document.querySelector('.inboxName').textContent = 'Inbox';
         displayTodos(inbox);
       }
 
@@ -357,14 +366,14 @@ function deleteProject() {
 }
 
 function refreshTodos() {
-  const selectedInbox = document.querySelector(".inboxName").textContent;
-  if (selectedInbox === "Inbox") {
+  const selectedInbox = document.querySelector('.inboxName').textContent;
+  if (selectedInbox === 'Inbox') {
     displayTodos(inbox);
-  } else if (selectedInbox === "Today") {
+  } else if (selectedInbox === 'Today') {
     displayTodos(today);
-  } else if (selectedInbox === "Tomorrow") {
+  } else if (selectedInbox === 'Tomorrow') {
     displayTodos(tomorrow);
-  } else if (selectedInbox === "Week") {
+  } else if (selectedInbox === 'Week') {
     displayTodos(week);
   } else {
     const project = projects.find((project) => project.title === selectedInbox);
@@ -372,18 +381,16 @@ function refreshTodos() {
   }
 }
 
-
-
 export function initializeTodoFunctions() {
   displayTodos(inbox);
   switchInboxes();
-  addTodoBtn.addEventListener("click", (event) => {
+  addTodoBtn.addEventListener('click', (event) => {
     event.preventDefault();
     createTodos();
     clearInputs();
     refreshTodos();
   });
-  submitProject.addEventListener("click", (event) => {
+  submitProject.addEventListener('click', (event) => {
     event.preventDefault();
     createProject();
     deleteProject();
