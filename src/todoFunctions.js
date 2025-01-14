@@ -44,6 +44,51 @@ function getProjectsFromLocalStorage() {
   if (projectsData) {
     projects.push(...projectsData);
   }
+
+  // Displays Projects after getting them from local storage
+  displayProjects();
+}
+
+function displayProjects() {
+  const projectSection = document.querySelector('.projects-section');
+  const projectSelection = document.querySelector('#project-selection');
+
+  // Creates the project section to be used for loading projects from local storage
+  projects.forEach((project) => {
+    const projectOption = document.createElement('option');
+    projectOption.textContent = project.title;
+    projectOption.value = project.title;
+    projectSelection.appendChild(projectOption);
+
+    const projectContainer = document.createElement('div');
+    const projectButton = document.createElement('button');
+    const projectIcon = document.createElement('div');
+    const deleteProject = document.createElement('button');
+    const deleteIcon = document.createElement('img');
+
+    projectContainer.classList.add('project');
+    projectButton.classList.add('project-button');
+    projectIcon.classList.add('project-icons');
+    deleteProject.classList.add('delete-project');
+
+    projectButton.textContent = project.title;
+    deleteIcon.src = '../dist/svg/trash-bin-minimalistic-svgrepo-com.svg';
+    deleteProject.appendChild(deleteIcon);
+
+    projectIcon.appendChild(deleteProject);
+    projectContainer.appendChild(projectButton);
+    projectContainer.appendChild(projectIcon);
+    projectSection.appendChild(projectContainer);
+
+    projectButton.addEventListener('click', () => {
+      const inboxName = document.querySelector('.inboxName');
+      inboxName.textContent = project.title;
+      displayTodos(project.todos);
+    });
+  });
+
+  // Gives the ability to delete projects after displayed
+  deleteProject();
 }
 
 // Class for Creating Todos
@@ -299,6 +344,8 @@ function createProject() {
   // Create a new project and add it to the projects array
   const newProject = new ProjectList(projectTitle);
   projects.push(newProject);
+
+  saveProjectsToLocalStorage();
 
   // Creates a new option in the project selection dropdown
   const projectOption = document.createElement('option');
